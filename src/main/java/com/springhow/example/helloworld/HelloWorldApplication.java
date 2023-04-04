@@ -23,7 +23,7 @@ public class HelloWorldApplication extends SpringBootServletInitializer {
 
     @RequestMapping("/")
     String helloWorld() {
-        return "WAR File Deployed to Test!";
+        return "WAR File Deployed to Test and Also on Prod Environment!";
     }
 
 }
