@@ -3,10 +3,10 @@ pipeline {
     tools {
         maven 'Maven'
     }
-    emailext body: 'Job Started', subject: 'Job Status', to: 'harkiratmalhotra@gmail.com'
     stages {
         stage('Test') {
             steps {
+               emailext body: 'Job Started', subject: 'Job Status', to: 'harkiratmalhotra@gmail.com'
                sh 'mvn test' 
             }
         }
