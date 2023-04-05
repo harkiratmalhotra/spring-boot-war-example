@@ -3,7 +3,6 @@ pipeline {
     tools {
         maven 'Maven'
     }
-
     stages {
         stage('Test') {
             steps {
@@ -16,6 +15,15 @@ pipeline {
             }
         }
         stage('Deploy on Test') {
+            steps {
+               deploy adapters: [tomcat9(credentialsId: 'tomcat9', path: '', url: 'http://10.0.2.4:8080')], contextPath: '/app', war: '**/*.war'
+            }
+        }
+        stage('Deploy on Prod') {
+            input {
+                message 'Do you want todeploy on Prod ?'
+                ok 'Yes'
+            }
             steps {
                deploy adapters: [tomcat9(credentialsId: 'tomcat9', path: '', url: 'http://10.0.2.4:8080')], contextPath: '/app', war: '**/*.war'
             }
