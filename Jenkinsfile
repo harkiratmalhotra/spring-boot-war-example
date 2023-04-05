@@ -3,6 +3,7 @@ pipeline {
     tools {
         maven 'Maven'
     }
+    emailext body: 'Job Started', subject: 'Job Status', to: 'harkiratmalhotra@gmail.com'
     stages {
         stage('Test') {
             steps {
@@ -35,9 +36,11 @@ pipeline {
         }
         success {
             echo 'I will run on success of each stages'
+            emailext body: 'Job Started', subject: 'Job Success', to: 'harkiratmalhotra@gmail.com'
         }
         failure {
             echo 'I will run if any of the stages fails'
+            emailext body: 'Job Started', subject: 'Job Failed', to: 'harkiratmalhotra@gmail.com'
         }
     }
 }
